@@ -191,7 +191,7 @@ public class PlayScreen extends JPanel{
         topBox = Box.createHorizontalBox();
         bottomBox = Box.createHorizontalBox();
      
-        gridPlay.setPreferredSize(new Dimension(580, 500));
+        gridPlay.setPreferredSize(new Dimension(522, 450));
 
         letterBox = Box.createHorizontalBox();
         letterBox.setPreferredSize(new Dimension(30, 25));
