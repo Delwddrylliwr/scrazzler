@@ -30,8 +30,7 @@ public class MainScreen extends JFrame{
 
     private HashMap<Integer, Integer> scoresHash = new HashMap<Integer, Integer>();
     
-    public MainScreen()
-    {
+    public MainScreen() {
         try {
             jbInit();
         }
@@ -52,8 +51,8 @@ public class MainScreen extends JFrame{
     private void jbInit() throws Exception {
         show();
        // this.getContentPane().setBackground(SystemColor.control);
-        buildMenu();
-        loadScores();
+        this.buildMenu();
+        this.loadScores();
         setTitle("Scrazzle Reborn");
         getContentPane().setLayout(borderLayout1);
         setBounds(0, 0, 720, 720);
@@ -67,7 +66,6 @@ public class MainScreen extends JFrame{
         this.setIconImage(new ImageIcon(this.getClass().getResource("/img/logo.png")).getImage());
         setVisible(true);
         validate();
-       
     }
 
     private void buildMenu()
@@ -123,7 +121,7 @@ public class MainScreen extends JFrame{
         }
     }
 
-    private void showPlay()
+    void showPlay()
     {
         mainPanel.removeAll();
         this.setBounds(0, 0, 620, 720);

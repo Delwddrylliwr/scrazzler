@@ -18,7 +18,7 @@ import javax.swing.border.Border;
 public class PlayScreen extends JPanel{
     //--------DATA----------
     private Grid gridPlay;
-    private MainScreen mainScreen;
+    MainScreen mainScreen;
 //    private int maxScore=0;
     private int totalScore=0;
 //    private int fullTime;
@@ -49,6 +49,7 @@ public class PlayScreen extends JPanel{
     private int[] letterFreqs = {9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1, 4, 2, 6, 8, 
         2, 1, 6, 4, 6, 4, 2, 2, 1, 2, 1}; 
     private int[] letterCumFreqs = new int[26];
+    private double endGameRatio = 0.05;
     
     public String getLetter(){
         return letterTextPane.getText();
@@ -59,7 +60,7 @@ public class PlayScreen extends JPanel{
         
         this.mainScreen = mainScreen;
         this.setLayout(new BorderLayout());
-        gridPlay = new Grid(height, width, this);
+        gridPlay = new Grid(height, width, this, endGameRatio);
         
         //build the cumulative letter frequencies, for generating letters
         letterCumFreqs[0] = letterFreqs[0];
@@ -141,6 +142,12 @@ public class PlayScreen extends JPanel{
 //    }
     private void displayGrid(){
         gridPlay.Build();
+//        if(randomGrid){
+//            gridPlay.Build();
+//        }
+//        else {
+//            gridPlay.getGrid();
+//        }
         add(gridPlay, BorderLayout.CENTER);
     }
     public void nextLetter(){
