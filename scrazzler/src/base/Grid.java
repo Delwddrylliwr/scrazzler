@@ -38,6 +38,9 @@ public class Grid extends JPanel{
     
     private int gridHeight;
     private int gridWidth;
+    
+    private int remainingSquares;
+    private double endGameRatio;
 //    private static Map<Character, Integer> letterScores = new HashMap<Character, Integer>(){
 //        {
 //            put('A', 1);
@@ -56,10 +59,15 @@ public class Grid extends JPanel{
     public int getGridWidth(){ return gridWidth; }
     public int getLetterScore(String letter){ return letterScores[(int) letter.charAt(0) - 'A']; }
     
-    public Grid(int gridHeight, int gridWidth, PlayScreen playScreen){
+    public Grid(int gridHeight, int gridWidth, PlayScreen playScreen, double endGameRatio){
         this.gridHeight = gridHeight;
         this.gridWidth = gridWidth;
         this.playScreen = playScreen;
+        
+        //set the remaining squares to the total available
+        this.remainingSquares = gridHeight * gridWidth;
+        this.endGameRatio = endGameRatio;
+        
         setFocusable(true); //allow the jpanel to receive focus
         squares = new ArrayList();
         
@@ -89,6 +97,8 @@ public class Grid extends JPanel{
         this.setBackground(Color.BLUE);
     }
     
+    //@todo offer option to save grid layout at end of game, and option to 
+    // retrieve these grids when starting a new game
     public void Build(){
         for (int i = 0; i < gridHeight; i++){
             for (int j = 0; j < gridWidth; j++){
@@ -237,6 +247,15 @@ public class Grid extends JPanel{
         s.setLetter(newLetter);
         s.setScore(newLetterScore);
         s.setBackground(Color.yellow);
+        
+        //update the remaining letters and check if the game is over
+        remainingSquares = remainingSquares - 1;
+        if( remainingSquares < gridHeight * gridWidth * endGameRatio ){
+            JOptionPane.showMessageDialog(this,"You have run out of letters. Play again?",
+               "Game Over",JOptionPane.INFORMATION_MESSAGE,
+               new ImageIcon(this.getClass().getResource("/img/about.png")));
+            playScreen.mainScreen.showPlay();
+        }
         
         //generate a new letter
         playScreen.nextLetter();
