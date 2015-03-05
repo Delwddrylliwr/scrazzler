@@ -18,7 +18,7 @@ import javax.swing.border.Border;
 public class PlayScreen extends JPanel{
     //--------DATA----------
     private Grid gridPlay;
-    MainScreen mainScreen;
+    public MainScreen mainScreen;
 //    private int maxScore=0;
     private int totalScore=0;
 //    private int fullTime;

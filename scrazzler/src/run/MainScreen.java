@@ -121,7 +121,7 @@ public class MainScreen extends JFrame{
         }
     }
 
-    void showPlay()
+    public void showPlay()
     {
         mainPanel.removeAll();
         this.setBounds(0, 0, 620, 720);
